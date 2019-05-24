@@ -22,6 +22,7 @@ public class CodeGenerator {
         // 全局配置
         String property = System.getProperty("user.dir");
         config.setOutputDir(property + "/src/main/java");
+        config.setActiveRecord(true); //开启AR模式
         config.setAuthor("qianjiu");
         config.setIdType(IdType.AUTO); //主键策略
         config.setServiceName("%sService");//生成的service接口名字首字母是否为I，这样设置就没有I
@@ -44,7 +45,7 @@ public class CodeGenerator {
                 .setNaming(NamingStrategy.underline_to_camel)//下划线到驼峰的命名方式
 //                .setTablePrefix("sys_")//表名前缀
                 .setEntityLombokModel(true)//使用lombok
-                .setInclude("sys_user");//逆向工程使用的表
+                .setInclude("sys_user", "user");//逆向工程使用的表
 
         //4、包名策略配置
         PackageConfig packageConfig = new PackageConfig();
@@ -52,8 +53,7 @@ public class CodeGenerator {
                 .setMapper("dao")
                 .setService("service")
                 .setController("controller")
-                .setEntity("model")
-                .setXml("mapper");//设置xml文件的目录
+                .setEntity("model").setXml("mapper");
 
         //5、整合配置
         AutoGenerator autoGenerator = new AutoGenerator();

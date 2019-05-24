@@ -1,18 +1,16 @@
 package com.xiangzi.mybatisplus.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-
-import java.io.Serializable;
-
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author qianjiu
@@ -21,9 +19,9 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class User extends Model implements Serializable {
+public class User extends Model<User> {
 
-    private static final long serialVersionUID = 1L;
+private static final long serialVersionUID=1L;
 
     /**
      * 主键ID
@@ -46,5 +44,10 @@ public class User extends Model implements Serializable {
      */
     private String email;
 
+
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
 
 }
