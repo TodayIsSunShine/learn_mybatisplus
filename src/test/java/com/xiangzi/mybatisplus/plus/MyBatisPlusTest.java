@@ -66,4 +66,12 @@ public class MyBatisPlusTest {
                 .like("name", "sm").or().like("email", "sm").orderByDesc("id")).forEach(System.out::println);
     }
 
+    @Test  //排序email和age字段
+    public void testSelectAllByExclusive() {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select(User.class, info -> !info.getColumn().equals("email") && !info.getColumn().equals("age"));
+        List<User> users = userMapper.selectList(queryWrapper);
+        users.forEach(System.out::println);
+    }
+
 }
