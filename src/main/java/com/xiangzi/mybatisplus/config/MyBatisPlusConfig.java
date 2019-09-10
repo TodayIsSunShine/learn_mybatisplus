@@ -1,8 +1,8 @@
 package com.xiangzi.mybatisplus.config;
 
+import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.SqlExplainInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -40,6 +40,16 @@ public class MyBatisPlusConfig {
         PaginationInterceptor page = new PaginationInterceptor();
         page.setDialectType("mysql");
         return page;
+    }
+
+    /**
+     * 乐观锁配置
+     *
+     * @return
+     */
+    @Bean
+    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+        return new OptimisticLockerInterceptor();
     }
 
 }
